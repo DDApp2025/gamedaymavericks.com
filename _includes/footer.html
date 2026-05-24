@@ -1,0 +1,87 @@
+{%- assign biz = site.business -%}
+<footer class="gm-footer">
+
+  {%- comment -%} ===== Newsletter band ===== {%- endcomment -%}
+  <section class="gm-footer__news" aria-labelledby="gm-news-title">
+    <div class="gm-container gm-footer__news-inner">
+      <div class="gm-footer__news-copy">
+        <h2 id="gm-news-title" class="gm-footer__news-title">Stay in the game</h2>
+        <p>Get first dibs on new arrivals, live breaks, and shop drops. No spam, just cards.</p>
+      </div>
+      <form class="gm-footer__news-form" data-newsletter novalidate>
+        <label class="gm-visually-hidden" for="gm-news-email">Email address</label>
+        <input class="gm-footer__news-input" id="gm-news-email" type="email" name="email"
+               placeholder="you@email.com" required>
+        <button class="gm-btn gm-btn--primary" type="submit">Sign Up</button>
+      </form>
+    </div>
+  </section>
+
+  {%- comment -%} ===== Main footer columns ===== {%- endcomment -%}
+  <div class="gm-container gm-footer__main">
+    <div class="gm-footer__col gm-footer__brand">
+      <a class="gm-footer__logo" href="{{ '/' | relative_url }}" aria-label="Gameday Mavericks home">
+        {% include logo.svg class="gm-logo" %}
+      </a>
+      <p class="gm-footer__blurb">Las Vegas sports cards and TCG. We buy, sell, trade, and grade. Built by collectors, for collectors.</p>
+      <ul class="gm-footer__contact">
+        <li>{% include icon.html name="map" class="gm-icon gm-icon--sm" %}<span>{{ biz.address_line1 }}, {{ biz.address_line2 }}</span></li>
+        <li><a href="tel:{{ biz.phone_link }}">{% include icon.html name="phone" class="gm-icon gm-icon--sm" %}<span>{{ biz.phone }}</span></a></li>
+        <li><a href="mailto:{{ biz.email }}">{% include icon.html name="mail" class="gm-icon gm-icon--sm" %}<span>{{ biz.email }}</span></a></li>
+      </ul>
+      <div class="gm-footer__social">
+        <a href="{{ biz.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
+          {% include icon.html name="instagram" class="gm-icon" %}
+        </a>
+      </div>
+    </div>
+
+    <nav class="gm-footer__col" aria-label="Shop">
+      <h3 class="gm-footer__heading">Shop</h3>
+      <ul class="gm-footer__links">
+        <li><a href="{{ '/collections/sports/' | relative_url }}">Sports Cards</a></li>
+        <li><a href="{{ '/collections/pokemon/' | relative_url }}">Pokemon</a></li>
+        <li><a href="{{ '/collections/tcg/' | relative_url }}">Other TCG</a></li>
+        <li><a href="{{ '/collections/graded/' | relative_url }}">Graded Cards</a></li>
+        <li><a href="{{ '/collections/supplies/' | relative_url }}">Supplies</a></li>
+        <li><a href="{{ '/collections/all/' | relative_url }}">View All</a></li>
+      </ul>
+    </nav>
+
+    <nav class="gm-footer__col" aria-label="Company">
+      <h3 class="gm-footer__heading">Company</h3>
+      <ul class="gm-footer__links">
+        <li><a href="{{ '/about/' | relative_url }}">About Us</a></li>
+        <li><a href="{{ '/services/' | relative_url }}">Buy / Sell / Trade / Grade</a></li>
+        <li><a href="{{ '/services/#contact' | relative_url }}">Sell Your Cards</a></li>
+        <li><a href="{{ '/cart/' | relative_url }}">Cart</a></li>
+        <li><a href="tel:{{ biz.phone_link }}">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="gm-footer__col gm-footer__hours">
+      <h3 class="gm-footer__heading">Store Hours</h3>
+      <table class="gm-hours">
+        <tbody>
+          {%- for h in biz.hours -%}
+          <tr><th scope="row">{{ h.day }}</th><td>{{ h.open }} - {{ h.close }}</td></tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {%- comment -%} ===== Bottom bar ===== {%- endcomment -%}
+  <div class="gm-footer__bottom">
+    <div class="gm-container gm-footer__bottom-inner">
+      <p class="gm-footer__copy">&copy; {{ 'now' | date: "%Y" }} {{ biz.legal_name }}. All rights reserved.</p>
+      <ul class="gm-footer__pay" aria-label="Accepted payment methods">
+        <li>VISA</li>
+        <li>MASTERCARD</li>
+        <li>AMEX</li>
+        <li>DISCOVER</li>
+        <li>APPLE PAY</li>
+      </ul>
+    </div>
+  </div>
+</footer>

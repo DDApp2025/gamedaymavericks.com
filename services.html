@@ -1,0 +1,69 @@
+---
+layout: default
+permalink: /services/
+title: Buy, Sell, Trade & Grade
+description: "Buy, sell, trade, and grade with Gameday Mavericks in Las Vegas. Same-day cash offers, fair trades, store credit, and PSA grading submissions."
+---
+
+<section class="gm-pagehead">
+  <div class="gm-container">
+    <nav class="gm-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span aria-hidden="true">/</span>
+      <span class="gm-breadcrumb__current">Services</span>
+    </nav>
+    <h1 class="gm-pagehead__title">Buy, Sell, Trade &amp; Grade</h1>
+    <p class="gm-pagehead__intro">Four ways to work with us. Walk in any day of the week, no appointment needed.</p>
+  </div>
+</section>
+
+<section class="gm-section">
+  <div class="gm-container">
+    {%- for s in site.data.services.services -%}
+    <div class="gm-svcblock">
+      <div class="gm-svcblock__media">{% include icon.html name=s.icon class="gm-icon" %}</div>
+      <div class="gm-svcblock__body">
+        <p class="gm-svcblock__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</p>
+        <h2 class="gm-svcblock__title">{{ s.title }}</h2>
+        <p class="gm-svcblock__text">{{ s.description }}</p>
+        <ul class="gm-svcblock__points">
+          {%- for pt in s.points -%}
+          <li>{% include icon.html name="check" class="gm-icon gm-icon--sm" %}<span>{{ pt }}</span></li>
+          {%- endfor -%}
+        </ul>
+        {%- assign ext = s.cta_url | slice: 0, 4 -%}
+        <a class="gm-btn gm-btn--primary" href="{{ s.cta_url | relative_url }}"{% if ext == "http" %} target="_blank" rel="noopener"{% endif %}>{{ s.cta_label }}</a>
+      </div>
+    </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+<section class="gm-section gm-section--alt" id="contact">
+  <div class="gm-container">
+    <div class="gm-feature">
+      <div class="gm-feature__body">
+        <p class="gm-section__eyebrow">Get Started</p>
+        <h2 class="gm-section__title gm-mt-0">Ready to deal?</h2>
+        <p class="gm-feature__text">Bringing cards to sell, trade, or grade? Stop by the shop or give us a call and we will take care of you. For the fastest service, send us a message on Instagram with photos of what you have.</p>
+        <div class="gm-feature__actions">
+          <a class="gm-btn gm-btn--primary" href="tel:{{ site.business.phone_link }}">{% include icon.html name="phone" class="gm-icon gm-icon--sm" %} Call {{ site.business.phone }}</a>
+          <a class="gm-btn gm-btn--outline" href="{{ site.business.instagram_url }}" target="_blank" rel="noopener">{% include icon.html name="instagram" class="gm-icon gm-icon--sm" %} Message Us</a>
+        </div>
+      </div>
+      <div class="gm-feature__body">
+        <h3 class="gm-footer__heading">Shop Hours</h3>
+        <table class="gm-hours" style="max-width:360px">
+          <tbody>
+            {%- for h in site.business.hours -%}
+            <tr><th scope="row">{{ h.day }}</th><td>{{ h.open }} - {{ h.close }}</td></tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+        <ul class="gm-footer__contact" style="margin-top:1.5rem">
+          <li>{% include icon.html name="map" class="gm-icon gm-icon--sm" %}<span>{{ site.business.address_line1 }}, {{ site.business.address_line2 }}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

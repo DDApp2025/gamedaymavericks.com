@@ -1,0 +1,38 @@
+# ============================================================
+#  Mega-navigation tree
+#  Edit this file to add / remove / reorder nav items.
+#  URLs are root-relative; the `relative_url` filter in nav.html
+#  prepends the site baseurl automatically.
+# ============================================================
+main:
+  - title: Home
+    url: /
+  - title: Sports
+    url: /collections/sports/
+    children:
+      - { title: Baseball,      url: /collections/baseball/ }
+      - { title: Football,      url: /collections/football/ }
+      - { title: Basketball,    url: /collections/basketball/ }
+      - { title: Hockey,        url: /collections/hockey/ }
+      - { title: Soccer,        url: /collections/soccer/ }
+      - { title: Racing,        url: /collections/racing/ }
+      - { title: Combat Sports, url: /collections/combat-sports/ }
+  - title: Pokemon
+    url: /collections/pokemon/
+  - title: TCG
+    url: /collections/tcg/
+    children:
+      - { title: Magic The Gathering, url: "/collections/tcg/#magic" }
+      - { title: Yu-Gi-Oh,            url: "/collections/tcg/#yugioh" }
+      - { title: One Piece,           url: "/collections/tcg/#onepiece" }
+      - { title: Lorcana,             url: "/collections/tcg/#lorcana" }
+      - { title: Disney,              url: "/collections/tcg/#disney" }
+      - { title: Star Wars,           url: "/collections/tcg/#starwars" }
+  - title: Graded
+    url: /collections/graded/
+  - title: Supplies
+    url: /collections/supplies/
+  - title: Services
+    url: /services/
+  - title: About
+    url: /about/

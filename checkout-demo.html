@@ -1,0 +1,138 @@
+---
+permalink: /checkout-demo/
+title: Checkout
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout</title>
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  <script>
+    window.GM = {
+      baseurl: "{{ site.baseurl }}",
+      demoMode: {{ site.stripe.demo_mode | jsonify }},
+      currency: "{{ site.currency_symbol }}",
+      freeShipping: {{ site.business.free_shipping_threshold | jsonify }}
+    };
+  </script>
+</head>
+<body class="gm-checkout-page">
+
+  <!-- Honest, low-key demo notice -->
+  <p class="gm-demo-banner">[ DEMO MODE ] This is a demonstration checkout. No card is charged and no data is sent.</p>
+
+  <div class="gm-checkout">
+
+    <!-- LEFT: payment form (purely visual) -->
+    <section class="gm-checkout__pay">
+      <div class="gm-checkout__inner">
+        <a class="gm-checkout__back" href="{{ '/cart/' | relative_url }}">&#8592; Back to cart</a>
+
+        <form class="gm-stripe-form" data-demo-form novalidate>
+          <h2>Pay with card</h2>
+
+          <div class="gm-field">
+            <label for="co-email">Email</label>
+            <input class="gm-input" id="co-email" type="email" placeholder="you@email.com" autocomplete="email">
+          </div>
+
+          <div class="gm-field">
+            <label for="co-card">Card information</label>
+            <div class="gm-input-group">
+              <input class="gm-input" id="co-card" inputmode="numeric" placeholder="1234 1234 1234 1234" autocomplete="cc-number">
+              <div class="gm-input-row">
+                <input class="gm-input" inputmode="numeric" placeholder="MM / YY" autocomplete="cc-exp">
+                <input class="gm-input" inputmode="numeric" placeholder="CVC" autocomplete="cc-csc">
+              </div>
+            </div>
+          </div>
+
+          <div class="gm-field">
+            <label for="co-name">Name on card</label>
+            <input class="gm-input" id="co-name" placeholder="Full name" autocomplete="cc-name">
+          </div>
+
+          <div class="gm-field">
+            <label for="co-zip">ZIP</label>
+            <input class="gm-input" id="co-zip" inputmode="numeric" placeholder="89101" autocomplete="postal-code">
+          </div>
+
+          <button class="gm-pay-btn" type="submit" data-pay-btn>
+            <span data-pay-label>Pay</span>
+          </button>
+
+          <p class="gm-stripe-foot">
+            {% include icon.html name="lock" class="gm-icon gm-icon--sm" %}
+            Powered by <b>stripe</b>
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- RIGHT: order summary from localStorage -->
+    <section class="gm-checkout__summary">
+      <div class="gm-checkout__inner">
+        <div class="gm-checkout__merchant">
+          {% include logo.svg class="gm-logo" %}
+        </div>
+        <p class="gm-checkout__amount-label">Pay {{ site.business.name }}</p>
+        <p class="gm-checkout__amount" data-co-amount>{{ site.currency_symbol }}0.00</p>
+
+        <div class="gm-checkout__lines" data-co-lines></div>
+
+        <div class="gm-checkout__totals">
+          <div class="gm-checkout__total-row"><span>Subtotal</span><span data-co-subtotal>{{ site.currency_symbol }}0.00</span></div>
+          <div class="gm-checkout__total-row"><span>Shipping</span><span data-co-shipping>FREE</span></div>
+          <div class="gm-checkout__total-row gm-checkout__total-row--grand"><span>Total due</span><span data-co-total>{{ site.currency_symbol }}0.00</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="{{ '/assets/js/cart.js' | relative_url }}"></script>
+  <script>
+    (function () {
+      var base = window.GM.baseurl || "";
+      var cart = window.GMCart.getCart();
+      if (!cart.length) { window.location.href = base + "/cart/"; return; }
+
+      var money = window.GMCart.formatMoney;
+      var sub = window.GMCart.getCartTotal();
+      var ship = window.GMCart.getShipping();
+      var total = window.GMCart.getGrandTotal();
+
+      function esc(s){ return String(s||"").replace(/[&<>"']/g,function(c){return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c];}); }
+
+      document.querySelector("[data-co-lines]").innerHTML = cart.map(function (i) {
+        return '<div class="gm-checkout__line">' +
+          '<img src="' + i.image + '" alt="">' +
+          '<div><div class="gm-checkout__line-title">' + esc(i.title) + '</div>' +
+          '<div class="gm-checkout__line-qty">Qty ' + i.quantity + '</div></div>' +
+          '<div class="gm-checkout__line-amt">' + money(i.price * i.quantity) + '</div>' +
+          '</div>';
+      }).join("");
+
+      document.querySelector("[data-co-amount]").textContent = money(total);
+      document.querySelector("[data-co-subtotal]").textContent = money(sub);
+      document.querySelector("[data-co-shipping]").textContent = ship === 0 ? "FREE" : money(ship);
+      document.querySelector("[data-co-total]").textContent = money(total);
+      document.querySelector("[data-pay-label]").textContent = "Pay " + money(total);
+
+      var form = document.querySelector("[data-demo-form]");
+      var btn = document.querySelector("[data-pay-btn]");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        btn.setAttribute("disabled", "disabled");
+        btn.innerHTML = '<span class="gm-spinner"></span>';
+        setTimeout(function () { window.location.href = base + "/success/"; }, 2000);
+      });
+    })();
+  </script>
+</body>
+</html>

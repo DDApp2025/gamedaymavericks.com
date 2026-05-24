@@ -1,0 +1,70 @@
+{%- comment -%} ===== Desktop mega navigation ===== {%- endcomment -%}
+<nav class="gm-nav" aria-label="Primary">
+  <div class="gm-container">
+    <ul class="gm-nav__list">
+      {%- for item in site.data.nav.main -%}
+      <li class="gm-nav__item{% if item.children %} gm-nav__item--has-children{% endif %}">
+        <a class="gm-nav__link{% if page.url == item.url %} is-active{% endif %}"
+           href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>
+          <span>{{ item.title }}</span>
+          {%- if item.children %}{% include icon.html name="chevron-down" class="gm-icon gm-icon--xs gm-nav__chevron" %}{% endif -%}
+        </a>
+        {%- if item.children -%}
+        <div class="gm-nav__dropdown">
+          <ul class="gm-nav__sublist">
+            {%- for child in item.children -%}
+            <li><a class="gm-nav__sublink" href="{{ child.url | relative_url }}">{{ child.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</nav>
+
+{%- comment -%} ===== Mobile drawer ===== {%- endcomment -%}
+<div class="gm-drawer" id="gm-mobile-nav" data-nav-drawer hidden>
+  <div class="gm-drawer__overlay" data-nav-close></div>
+  <aside class="gm-drawer__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="gm-drawer__head">
+      <span class="gm-drawer__title">Menu</span>
+      <button class="gm-drawer__close" type="button" data-nav-close aria-label="Close menu">
+        {% include icon.html name="close" class="gm-icon" %}
+      </button>
+    </div>
+    <ul class="gm-drawer__list">
+      {%- for item in site.data.nav.main -%}
+      <li class="gm-drawer__item">
+        {%- if item.children -%}
+        <div class="gm-drawer__row">
+          <a class="gm-drawer__link" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+          <button class="gm-drawer__expand" type="button" data-drawer-expand
+                  aria-expanded="false" aria-label="Show {{ item.title }} categories">
+            {% include icon.html name="chevron-down" class="gm-icon gm-icon--sm" %}
+          </button>
+        </div>
+        <ul class="gm-drawer__sublist" hidden>
+          {%- for child in item.children -%}
+          <li><a class="gm-drawer__sublink" href="{{ child.url | relative_url }}">{{ child.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+        {%- else -%}
+        <a class="gm-drawer__link" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+    <div class="gm-drawer__foot">
+      <a class="gm-btn gm-btn--primary gm-btn--block" href="tel:{{ site.business.phone_link }}">
+        {% include icon.html name="phone" class="gm-icon gm-icon--sm" %}
+        Call {{ site.business.phone }}
+      </a>
+      <a class="gm-drawer__social" href="{{ site.business.instagram_url }}" target="_blank" rel="noopener">
+        {% include icon.html name="instagram" class="gm-icon gm-icon--sm" %}
+        @{{ site.business.instagram }}
+      </a>
+    </div>
+  </aside>
+</div>

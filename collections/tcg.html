@@ -1,0 +1,63 @@
+---
+layout: default
+permalink: /collections/tcg/
+title: Other TCG
+description: "Magic The Gathering, Yu-Gi-Oh, One Piece, Lorcana, Disney, and Star Wars trading card games at Gameday Mavericks in Las Vegas."
+games:
+  - { id: magic,    name: "Magic The Gathering" }
+  - { id: yugioh,   name: "Yu-Gi-Oh" }
+  - { id: onepiece, name: "One Piece" }
+  - { id: lorcana,  name: "Lorcana" }
+  - { id: disney,   name: "Disney" }
+  - { id: starwars, name: "Star Wars" }
+---
+
+<section class="gm-pagehead">
+  <div class="gm-container">
+    <nav class="gm-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span aria-hidden="true">/</span>
+      <span class="gm-breadcrumb__current">Other TCG</span>
+    </nav>
+    <h1 class="gm-pagehead__title">Other TCG</h1>
+    <p class="gm-pagehead__intro">Beyond Pokemon, we stock the top trading card games. Jump to a game below, or <a href="{{ '/collections/pokemon/' | relative_url }}">shop Pokemon here</a>.</p>
+  </div>
+</section>
+
+{%- comment -%} Quick jump chips {%- endcomment -%}
+<section class="gm-section gm-section--tight">
+  <div class="gm-container">
+    <div class="gm-dealers__list" style="justify-content:flex-start">
+      {%- for g in page.games -%}
+      <a class="gm-dealer" href="#{{ g.id }}">{{ g.name }}</a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- for g in page.games -%}
+{%- assign gprods = site.data.products | where: "line", g.id -%}
+{%- assign alt = forloop.index0 | modulo: 2 -%}
+<section class="gm-section{% if alt == 1 %} gm-section--alt{% endif %}" id="{{ g.id }}">
+  <div class="gm-container">
+    <div class="gm-section__head">
+      <h2 class="gm-section__title">{{ g.name }}</h2>
+    </div>
+    {%- if gprods.size > 0 -%}
+    <div class="gm-grid gm-grid--products">
+      {%- for p in gprods -%}{% include product-card.html product=p %}{%- endfor -%}
+    </div>
+    {%- else -%}
+    <div class="gm-empty" style="margin-block:0">
+      {% include icon.html name="cards" class="gm-icon gm-empty__icon" %}
+      <h3 class="gm-empty__title">In stock at the shop</h3>
+      <p class="gm-empty__text">We carry {{ g.name }} singles, sealed product, and accessories in store. Online listings are coming soon. Call or DM us for current stock.</p>
+      <div class="gm-empty__actions">
+        <a class="gm-btn gm-btn--primary" href="tel:{{ site.business.phone_link }}">Call {{ site.business.phone }}</a>
+        <a class="gm-btn gm-btn--outline" href="{{ site.business.instagram_url }}" target="_blank" rel="noopener">Message Us</a>
+      </div>
+    </div>
+    {%- endif -%}
+  </div>
+</section>
+{%- endfor -%}

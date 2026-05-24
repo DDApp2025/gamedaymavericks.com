@@ -1,0 +1,93 @@
+---
+layout: default
+permalink: /about/
+title: About Us
+description: "Gameday Mavericks is a Las Vegas card shop built by collectors. Buy, sell, trade, and grade sports cards, Pokemon, and TCG."
+---
+
+<section class="gm-pagehead">
+  <div class="gm-container">
+    <nav class="gm-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span aria-hidden="true">/</span>
+      <span class="gm-breadcrumb__current">About</span>
+    </nav>
+    <h1 class="gm-pagehead__title">About Gameday Mavericks</h1>
+    <p class="gm-pagehead__intro">A Las Vegas card shop built by collectors, for collectors. Sports cards, Pokemon, and TCG under one roof.</p>
+  </div>
+</section>
+
+<section class="gm-section">
+  <div class="gm-container">
+    <div class="gm-feature">
+      <div class="gm-feature__media">
+        <img src="{{ '/assets/images/shop-photo.svg' | relative_url }}" alt="Inside the Gameday Mavericks shop" loading="lazy">
+      </div>
+      <div class="gm-feature__body gm-prose">
+        <p class="gm-section__eyebrow">Our Story</p>
+        <h2 class="gm-section__title gm-mt-0">For the love of the hobby</h2>
+        <p>Gameday Mavericks started with a simple idea: give Las Vegas a real home base for collectors. A place where you can browse loaded cases, rip packs with friends, and get an honest deal whether you are buying your first box or selling a collection you have built for years.</p>
+        <p>We carry sealed product, graded slabs, and singles across every major sport, Pokemon, and the top trading card games. New inventory hits the shelves every week, and our live breaks bring the whole crew together.</p>
+        <p>Stop in, talk cards, and let us help you find your next pull.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gm-section gm-section--alt">
+  <div class="gm-container">
+    <div class="gm-section__head">
+      <div>
+        <p class="gm-section__eyebrow">Why Us</p>
+        <h2 class="gm-section__title">What sets us apart</h2>
+      </div>
+    </div>
+    <div class="gm-services">
+      <article class="gm-svc">
+        <div class="gm-svc__icon">{% include icon.html name="cash" %}</div>
+        <h3 class="gm-svc__title">Fair Pricing</h3>
+        <p class="gm-svc__text">Transparent, no-pressure offers when you sell or trade. We show our work and pay what cards are worth.</p>
+      </article>
+      <article class="gm-svc">
+        <div class="gm-svc__icon">{% include icon.html name="cards" %}</div>
+        <h3 class="gm-svc__title">Real Selection</h3>
+        <p class="gm-svc__text">Sealed, graded, and singles across every sport and TCG. The cases get restocked every week.</p>
+      </article>
+      <article class="gm-svc">
+        <div class="gm-svc__icon">{% include icon.html name="shield" %}</div>
+        <h3 class="gm-svc__title">Hobby First</h3>
+        <p class="gm-svc__text">Run by people who actually collect. You get straight answers and a crew that loves this stuff.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="gm-section">
+  <div class="gm-container">
+    <div class="gm-feature">
+      <div class="gm-feature__media" style="display:grid;place-items:center;background:linear-gradient(135deg,#1d1d1d,#0c0c0c);color:var(--gm-red)">
+        {% include icon.html name="map" class="gm-icon" %}
+      </div>
+      <div class="gm-feature__body">
+        <p class="gm-section__eyebrow">Visit the Shop</p>
+        <h2 class="gm-section__title gm-mt-0">Find us in Las Vegas</h2>
+        <ul class="gm-footer__contact" style="margin-block:1rem 1.5rem">
+          <li>{% include icon.html name="map" class="gm-icon gm-icon--sm" %}<span>{{ site.business.address_line1 }}, {{ site.business.address_line2 }}</span></li>
+          <li><a href="tel:{{ site.business.phone_link }}">{% include icon.html name="phone" class="gm-icon gm-icon--sm" %}<span>{{ site.business.phone }}</span></a></li>
+          <li><a href="{{ site.business.instagram_url }}" target="_blank" rel="noopener">{% include icon.html name="instagram" class="gm-icon gm-icon--sm" %}<span>@{{ site.business.instagram }}</span></a></li>
+        </ul>
+        <table class="gm-hours" style="max-width:340px;margin-bottom:1.5rem">
+          <tbody>
+            {%- for h in site.business.hours -%}
+            <tr><th scope="row">{{ h.day }}</th><td>{{ h.open }} - {{ h.close }}</td></tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+        <div class="gm-feature__actions">
+          <a class="gm-btn gm-btn--primary" href="https://www.google.com/maps/search/?api=1&amp;query=Gameday+Mavericks+Sports+Cards+Las+Vegas+NV" target="_blank" rel="noopener">Get Directions</a>
+          <a class="gm-btn gm-btn--outline" href="tel:{{ site.business.phone_link }}">Call the Shop</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

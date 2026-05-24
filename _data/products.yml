@@ -1,0 +1,186 @@
+# ============================================================
+#  PRODUCTS  (demo seed data - 12 items)
+#  --------------------------------------------------------
+#  Field reference:
+#   id              unique id, also used as the cart key
+#   title           shown on cards / detail page
+#   group           top-level landing bucket:
+#                     sports | pokemon | tcg | supplies
+#   category        fine-grained collection page slug
+#                     (baseball, football, basketball, pokemon, tcg, supplies, ...)
+#   type            sealed | graded | single | supplies  (drives the Graded page)
+#   price           number, no symbol
+#   image           path to placeholder svg (relative_url applied at render)
+#   badge           corner label: SEALED | GRADED | SINGLE | SUPPLIES
+#   grade           optional grade chip, e.g. "PSA 10"
+#   stock           integer; <= 3 shows a low-stock note
+#   featured        true -> appears in the homepage Featured grid
+#   description     product detail copy
+#   stripe_price_id Stripe Price ID. "price_DEMO_xxx" while in demo mode.
+#                     Replace with real price_... ids when going live.
+# ============================================================
+
+# ---- Sealed sports boxes (3) ---------------------------------------
+- id: prod_001
+  title: "2024 Topps Chrome Baseball Hobby Box"
+  group: sports
+  category: baseball
+  type: sealed
+  price: 299.99
+  image: /assets/images/products/baseball.svg
+  badge: "SEALED"
+  stock: 5
+  featured: true
+  description: "Factory sealed hobby box. 24 packs per box, 4 cards per pack. Chase Refractors, Rookie Autographs, and the always-tough Superfractor 1/1. A hobby staple for any baseball collector."
+  stripe_price_id: "price_DEMO_001"
+
+- id: prod_002
+  title: "2023 Panini Prizm Football Hobby Box"
+  group: sports
+  category: football
+  type: sealed
+  price: 499.99
+  image: /assets/images/products/football.svg
+  badge: "SEALED"
+  stock: 3
+  featured: true
+  description: "Factory sealed hobby box. 12 packs per box, 12 cards per pack. Loaded with Silver Prizms, Color Blast inserts, and on-card rookie autos. One of the most popular football releases of the year."
+  stripe_price_id: "price_DEMO_002"
+
+- id: prod_003
+  title: "2023-24 Panini Prizm Basketball Hobby Box"
+  group: sports
+  category: basketball
+  type: sealed
+  price: 649.99
+  image: /assets/images/products/basketball.svg
+  badge: "SEALED"
+  stock: 2
+  featured: true
+  description: "Factory sealed hobby box. 12 packs per box, 12 cards per pack. The premier basketball product, featuring Silver Prizms, rookie autographs, and rare numbered parallels from the latest NBA class."
+  stripe_price_id: "price_DEMO_003"
+
+# ---- Graded sports singles (2) -------------------------------------
+- id: prod_004
+  title: "2018 Panini Prizm Luka Doncic Rookie"
+  group: sports
+  category: basketball
+  type: graded
+  price: 899.99
+  image: /assets/images/products/graded.svg
+  badge: "GRADED"
+  grade: "PSA 10"
+  stock: 1
+  featured: true
+  description: "Luka Doncic base rookie card from the 2018-19 Panini Prizm set, graded PSA 10 Gem Mint. A cornerstone modern basketball rookie and a blue-chip addition to any collection."
+  stripe_price_id: "price_DEMO_004"
+
+- id: prod_005
+  title: "2001 Bowman Chrome Albert Pujols Rookie"
+  group: sports
+  category: baseball
+  type: graded
+  price: 749.99
+  image: /assets/images/products/graded.svg
+  badge: "GRADED"
+  grade: "BGS 9"
+  stock: 1
+  featured: true
+  description: "Albert Pujols Bowman Chrome rookie from 2001, graded BGS 9 Mint. A future Hall of Famer and one of the most sought-after baseball rookies of the modern era."
+  stripe_price_id: "price_DEMO_005"
+
+# ---- Pokemon (3) ---------------------------------------------------
+- id: prod_006
+  title: "Pokemon Scarlet & Violet 151 Booster Bundle"
+  group: pokemon
+  category: pokemon
+  type: sealed
+  price: 44.99
+  image: /assets/images/products/pokemon.svg
+  badge: "SEALED"
+  stock: 8
+  featured: true
+  description: "Six booster packs celebrating the original 151 Pokemon. Chase the ex cards, illustration rares, and the special art Charizard. Sealed and ready to rip."
+  stripe_price_id: "price_DEMO_006"
+
+- id: prod_007
+  title: "Pokemon Charizard ex Super-Premium Collection"
+  group: pokemon
+  category: pokemon
+  type: sealed
+  price: 39.99
+  image: /assets/images/products/pokemon.svg
+  badge: "SEALED"
+  stock: 6
+  featured: true
+  description: "Premium collection box featuring an oversized Charizard ex promo, multiple booster packs, and a collector pin. A perfect gift for any Pokemon fan."
+  stripe_price_id: "price_DEMO_007"
+
+- id: prod_008
+  title: "Pokemon Surging Sparks Elite Trainer Box"
+  group: pokemon
+  category: pokemon
+  type: sealed
+  price: 59.99
+  image: /assets/images/products/pokemon.svg
+  badge: "SEALED"
+  stock: 4
+  featured: true
+  description: "Elite Trainer Box with nine Surging Sparks booster packs, 65 card sleeves, energy cards, dice, and a collector box. Everything you need to build and protect a deck."
+  stripe_price_id: "price_DEMO_008"
+
+# ---- Other TCG (2) -------------------------------------------------
+- id: prod_009
+  title: "One Piece OP-09 Emperors in the New World Box"
+  group: tcg
+  category: tcg
+  line: onepiece
+  type: sealed
+  price: 109.99
+  image: /assets/images/products/onepiece.svg
+  badge: "SEALED"
+  stock: 3
+  featured: false
+  description: "Sealed One Piece Card Game booster box, 24 packs. Hunt for leaders, alternate art rares, and the manga-style secret rares from the New World set."
+  stripe_price_id: "price_DEMO_009"
+
+- id: prod_010
+  title: "Magic The Gathering Foundations Play Booster Box"
+  group: tcg
+  category: tcg
+  line: magic
+  type: sealed
+  price: 129.99
+  image: /assets/images/products/magic.svg
+  badge: "SEALED"
+  stock: 3
+  featured: false
+  description: "Magic The Gathering Foundations Play Booster Box, 36 packs. A core set built to last, with reprints of format staples plus brand new cards and foils."
+  stripe_price_id: "price_DEMO_010"
+
+# ---- Supplies (2) --------------------------------------------------
+- id: prod_011
+  title: "Ultra Pro Premium Soft Card Sleeves (100 ct)"
+  group: supplies
+  category: supplies
+  type: supplies
+  price: 4.99
+  image: /assets/images/products/supplies-sleeves.svg
+  badge: "SUPPLIES"
+  stock: 40
+  featured: false
+  description: "Pack of 100 acid-free, archival-safe penny sleeves. The first line of defense for your singles before they go into a top loader or one-touch."
+  stripe_price_id: "price_DEMO_011"
+
+- id: prod_012
+  title: "BCW 35pt Top Loaders (25 ct)"
+  group: supplies
+  category: supplies
+  type: supplies
+  price: 9.99
+  image: /assets/images/products/supplies-toploader.svg
+  badge: "SUPPLIES"
+  stock: 30
+  featured: false
+  description: "Rigid 3 x 4 top loaders, 25 count, fits standard 35pt trading cards. Crystal clear and ultra-rigid to keep your cards corner-sharp."
+  stripe_price_id: "price_DEMO_012"

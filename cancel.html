@@ -1,0 +1,20 @@
+---
+layout: default
+permalink: /cancel/
+title: Checkout Canceled
+description: "Your checkout was canceled. Your cart has been saved."
+---
+
+<section class="gm-section">
+  <div class="gm-container">
+    <div class="gm-result">
+      {% include icon.html name="close" class="gm-icon gm-result__icon gm-result__icon--cancel" %}
+      <h1>Checkout canceled</h1>
+      <p class="gm-lead">No worries, nothing was charged and your cart has been saved. Pick up right where you left off whenever you are ready.</p>
+      <div class="gm-result__actions">
+        <a class="gm-btn gm-btn--primary" href="{{ '/cart/' | relative_url }}">Return to Cart</a>
+        <a class="gm-btn gm-btn--outline" href="{{ '/collections/all/' | relative_url }}">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+</section>

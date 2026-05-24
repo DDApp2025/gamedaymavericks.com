@@ -1,0 +1,53 @@
+---
+layout: default
+permalink: /cart/
+title: Your Cart
+description: "Review the cards in your cart and check out."
+---
+
+<section class="gm-pagehead gm-pagehead--slim">
+  <div class="gm-container">
+    <nav class="gm-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span aria-hidden="true">/</span>
+      <span class="gm-breadcrumb__current">Cart</span>
+    </nav>
+    <h1 class="gm-pagehead__title">Your Cart</h1>
+  </div>
+</section>
+
+<section class="gm-section gm-section--tight" data-cart-page>
+  <div class="gm-container">
+
+    {%- comment -%} Empty state (toggled by cart.js) {%- endcomment -%}
+    <div class="gm-empty" data-cart-empty hidden>
+      {% include icon.html name="cart" class="gm-icon gm-empty__icon" %}
+      <h2 class="gm-empty__title">Your cart is empty</h2>
+      <p class="gm-empty__text">Looks like you have not added anything yet. Browse the cases and find your next pull.</p>
+      <div class="gm-empty__actions">
+        <a class="gm-btn gm-btn--primary" href="{{ '/collections/all/' | relative_url }}">Continue Shopping</a>
+      </div>
+    </div>
+
+    <div class="gm-cart">
+      {%- comment -%} Line items rendered by cart.js {%- endcomment -%}
+      <div class="gm-cart__items" data-cart-items></div>
+
+      <aside class="gm-cart__summary" data-cart-summary hidden>
+        <h2>Order Summary</h2>
+        <div class="gm-cart__freebar" data-free-bar></div>
+        <div class="gm-cart__summary-row"><span>Subtotal</span><span data-cart-subtotal>{{ site.currency_symbol }}0.00</span></div>
+        <div class="gm-cart__summary-row"><span>Shipping</span><span data-cart-shipping>FREE</span></div>
+        <div class="gm-cart__summary-row gm-cart__summary-row--total"><span>Total</span><span class="gm-cart__total" data-cart-total>{{ site.currency_symbol }}0.00</span></div>
+        <button class="gm-btn gm-btn--primary gm-btn--block gm-btn--lg gm-cart__checkout" type="button" data-checkout>
+          {% include icon.html name="lock" class="gm-icon gm-icon--sm" %} Checkout
+        </button>
+        <p class="gm-cart__note">
+          {% include icon.html name="lock" class="gm-icon gm-icon--sm" %}
+          Secure checkout{% if site.stripe.demo_mode %} &middot; demo mode, no real charge{% endif %}.
+        </p>
+        <p class="gm-cart__note"><a href="{{ '/collections/all/' | relative_url }}">Continue shopping</a></p>
+      </aside>
+    </div>
+  </div>
+</section>

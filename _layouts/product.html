@@ -1,0 +1,112 @@
+---
+layout: default
+---
+{%- assign p = site.data.products | where: "id", page.product_id | first -%}
+{%- comment -%} Map the product group to its landing page for the breadcrumb {%- endcomment -%}
+{%- case p.group -%}
+{%- when "sports" %}{% assign parent_title = "Sports" %}{% assign parent_url = "/collections/sports/" %}
+{%- when "pokemon" %}{% assign parent_title = "Pokemon" %}{% assign parent_url = "/collections/pokemon/" %}
+{%- when "tcg" %}{% assign parent_title = "TCG" %}{% assign parent_url = "/collections/tcg/" %}
+{%- when "supplies" %}{% assign parent_title = "Supplies" %}{% assign parent_url = "/collections/supplies/" %}
+{%- else %}{% assign parent_title = "Shop" %}{% assign parent_url = "/collections/all/" %}
+{%- endcase -%}
+
+{%- if p == nil -%}
+<section class="gm-section">
+  <div class="gm-container gm-empty">
+    <h1 class="gm-empty__title">Product not found</h1>
+    <p class="gm-empty__text">This product is no longer available.</p>
+    <a class="gm-btn gm-btn--primary" href="{{ '/collections/all/' | relative_url }}">Browse All Products</a>
+  </div>
+</section>
+{%- else -%}
+
+<section class="gm-pagehead gm-pagehead--slim">
+  <div class="gm-container">
+    <nav class="gm-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="{{ parent_url | relative_url }}">{{ parent_title }}</a>
+      <span aria-hidden="true">/</span>
+      <span class="gm-breadcrumb__current">{{ p.title }}</span>
+    </nav>
+  </div>
+</section>
+
+<section class="gm-section gm-section--tight">
+  <div class="gm-container gm-product">
+    <div class="gm-product__media">
+      <img class="gm-product__img" src="{{ p.image | relative_url }}" alt="{{ p.title }}" width="600" height="600">
+      {%- if p.badge %}<span class="gm-badge gm-badge--{{ p.type }}">{{ p.badge }}</span>{% endif -%}
+      {%- if p.grade %}<span class="gm-badge gm-badge--grade">{{ p.grade }}</span>{% endif -%}
+    </div>
+
+    <div class="gm-product__info">
+      <p class="gm-product__cat">{{ parent_title }}</p>
+      <h1 class="gm-product__title">{{ p.title }}</h1>
+      {%- if p.grade %}<p class="gm-product__gradechip">{% include icon.html name="shield" class="gm-icon gm-icon--sm" %} {{ p.grade }}</p>{% endif -%}
+      <p class="gm-product__price">{{ site.currency_symbol }}{{ p.price }}</p>
+
+      {%- if p.stock == 0 -%}
+      <p class="gm-product__stock gm-product__stock--out">Sold Out</p>
+      {%- elsif p.stock <= 3 -%}
+      <p class="gm-product__stock gm-product__stock--low">{% include icon.html name="check" class="gm-icon gm-icon--sm" %} In stock - only {{ p.stock }} left</p>
+      {%- else -%}
+      <p class="gm-product__stock gm-product__stock--in">{% include icon.html name="check" class="gm-icon gm-icon--sm" %} In stock and ready to ship</p>
+      {%- endif -%}
+
+      <p class="gm-product__desc">{{ p.description }}</p>
+
+      {%- if p.stock > 0 -%}
+      <div class="gm-product__buy" data-buy>
+        <div class="gm-qty" data-qty>
+          <button class="gm-qty__btn" type="button" data-qty-dec aria-label="Decrease quantity">{% include icon.html name="minus" class="gm-icon gm-icon--sm" %}</button>
+          <input class="gm-qty__input" data-qty-input type="number" value="1" min="1" max="{{ p.stock }}" inputmode="numeric" aria-label="Quantity">
+          <button class="gm-qty__btn" type="button" data-qty-inc aria-label="Increase quantity">{% include icon.html name="plus" class="gm-icon gm-icon--sm" %}</button>
+        </div>
+        <button class="gm-btn gm-btn--primary gm-btn--lg gm-add" type="button"
+                data-add
+                data-id="{{ p.id }}"
+                data-title="{{ p.title | escape }}"
+                data-price="{{ p.price }}"
+                data-image="{{ p.image | relative_url }}"
+                data-price-id="{{ p.stripe_price_id }}"
+                data-stock="{{ p.stock }}">
+          <span class="gm-add__label">{% include icon.html name="cart" class="gm-icon gm-icon--sm" %} Add to Cart</span>
+          <span class="gm-add__done" aria-hidden="true">{% include icon.html name="check" class="gm-icon gm-icon--sm" %} Added</span>
+        </button>
+      </div>
+      {%- else -%}
+      <button class="gm-btn gm-btn--ghost gm-btn--lg" type="button" disabled>Sold Out</button>
+      {%- endif -%}
+
+      <ul class="gm-product__assure">
+        <li>{% include icon.html name="truck" class="gm-icon gm-icon--sm" %} Free shipping over {{ site.currency_symbol }}{{ site.business.free_shipping_threshold }}</li>
+        <li>{% include icon.html name="shield" class="gm-icon gm-icon--sm" %} Authenticity guaranteed</li>
+        <li>{% include icon.html name="map" class="gm-icon gm-icon--sm" %} Local pickup in Las Vegas</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{%- assign related = site.data.products | where: "group", p.group -%}
+{%- if related.size > 1 -%}
+<section class="gm-section gm-section--alt">
+  <div class="gm-container">
+    <div class="gm-section__head">
+      <h2 class="gm-section__title">You may also like</h2>
+    </div>
+    <div class="gm-grid gm-grid--products">
+      {%- assign shown = 0 -%}
+      {%- for r in related -%}
+        {%- if r.id != p.id and shown < 4 -%}
+          {% include product-card.html product=r %}
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{%- endif -%}

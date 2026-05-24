@@ -1,0 +1,75 @@
+# ============================================================
+#  SERVICES
+#  `services`   -> full Buy / Sell / Trade / Grade blocks (services page)
+#  `highlights` -> 3 cards in the homepage Services section
+#  `icon` is a keyword resolved to an inline SVG in the templates
+#  (see _includes/icon.html). Add a new keyword there to add an icon.
+# ============================================================
+
+services:
+  - id: buy
+    title: "Buy"
+    icon: "tag"
+    tagline: "Shop our cases and showcases"
+    description: "Walk in and browse sealed product, graded slabs, and singles across every sport and TCG. New inventory hits the cases every week. If we do not have it on the shelf, we will help you track it down."
+    points:
+      - "Sealed boxes, cases, and packs"
+      - "Graded singles and raw cards"
+      - "Sports, Pokemon, and TCG"
+    cta_label: "Shop Now"
+    cta_url: /collections/all/
+
+  - id: sell
+    title: "Sell"
+    icon: "cash"
+    tagline: "Turn your collection into cash"
+    description: "Bring your cards in for a fair, no-pressure cash offer. From single high-end slabs to full collections and estates, we evaluate everything in-house and pay on the spot. No appointment needed."
+    points:
+      - "Same-day cash offers"
+      - "Single cards to full collections"
+      - "Honest, transparent pricing"
+    cta_label: "Get an Offer"
+    cta_url: /services/#contact
+
+  - id: trade
+    title: "Trade"
+    icon: "swap"
+    tagline: "Trade up for what you want"
+    description: "Have cards you are ready to move? Trade them toward anything in the shop. Our team will work with you to build a deal that gets you the cards you are chasing. Trade credit available."
+    points:
+      - "Trade toward any inventory"
+      - "Store credit available"
+      - "Fair two-way valuations"
+    cta_label: "Visit the Shop"
+    cta_url: /about/
+
+  - id: grade
+    title: "Grade"
+    icon: "shield"
+    tagline: "PSA grading submissions"
+    description: "We handle PSA grading submissions for you, start to finish. Drop your cards off, we package and ship them safely, and we keep you updated until your graded slabs come home. Bulk and express tiers available."
+    points:
+      - "PSA submissions handled in-house"
+      - "Secure packaging and shipping"
+      - "Bulk and express service levels"
+    cta_label: "Ask About Grading"
+    cta_url: /services/#contact
+
+highlights:
+  - title: "Live Breaks"
+    icon: "video"
+    description: "Join our live group breaks on Instagram. Snag a spot, pull with the crew, and we ship your hits straight to your door."
+    cta_label: "Follow @gamedaymavericks_22"
+    cta_url: "https://www.instagram.com/gamedaymavericks_22/"
+
+  - title: "PSA Grading"
+    icon: "shield"
+    description: "Skip the hassle. Drop your cards with us and we manage the entire PSA submission process from packaging to return."
+    cta_label: "Learn More"
+    cta_url: /services/
+
+  - title: "Buy / Sell / Trade"
+    icon: "swap"
+    description: "Cash offers, fair trades, and store credit on cards across every sport, Pokemon, and TCG. Stop in any day of the week."
+    cta_label: "See Services"
+    cta_url: /services/

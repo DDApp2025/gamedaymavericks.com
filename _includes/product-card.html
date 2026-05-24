@@ -1,0 +1,37 @@
+{%- comment -%}
+  Product tile. Usage: {% include product-card.html product=product %}
+{%- endcomment -%}
+{%- assign p = include.product -%}
+{%- assign p_url = '/products/' | append: p.id | append: '/' | relative_url -%}
+{%- assign low = false -%}
+{%- if p.stock > 0 and p.stock <= 3 %}{% assign low = true %}{% endif -%}
+<article class="gm-card">
+  <a class="gm-card__media" href="{{ p_url }}" aria-label="{{ p.title }}">
+    <img class="gm-card__img" src="{{ p.image | relative_url }}" alt="{{ p.title }}" loading="lazy" width="600" height="600">
+    {%- if p.badge %}<span class="gm-badge gm-badge--{{ p.type }}">{{ p.badge }}</span>{% endif -%}
+    {%- if p.grade %}<span class="gm-badge gm-badge--grade">{{ p.grade }}</span>{% endif -%}
+    {%- if p.stock == 0 %}<span class="gm-card__soldout">Sold Out</span>{% endif -%}
+  </a>
+  <div class="gm-card__body">
+    <h3 class="gm-card__title"><a href="{{ p_url }}">{{ p.title }}</a></h3>
+    <div class="gm-card__meta">
+      <span class="gm-price">{{ site.currency_symbol }}{{ p.price }}</span>
+      {%- if low %}<span class="gm-stock gm-stock--low">Only {{ p.stock }} left</span>{% endif -%}
+    </div>
+    {%- if p.stock == 0 -%}
+    <button class="gm-btn gm-btn--ghost gm-btn--block" type="button" disabled>Sold Out</button>
+    {%- else -%}
+    <button class="gm-btn gm-btn--primary gm-btn--block gm-add" type="button"
+            data-add
+            data-id="{{ p.id }}"
+            data-title="{{ p.title | escape }}"
+            data-price="{{ p.price }}"
+            data-image="{{ p.image | relative_url }}"
+            data-price-id="{{ p.stripe_price_id }}"
+            data-stock="{{ p.stock }}">
+      <span class="gm-add__label">Add to Cart</span>
+      <span class="gm-add__done" aria-hidden="true">{% include icon.html name="check" class="gm-icon gm-icon--sm" %} Added</span>
+    </button>
+    {%- endif -%}
+  </div>
+</article>

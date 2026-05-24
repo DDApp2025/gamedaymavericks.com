@@ -1,0 +1,64 @@
+{%- assign biz = site.business -%}
+{%- comment -%} ===== Top utility bar ===== {%- endcomment -%}
+<div class="gm-topbar">
+  <div class="gm-container gm-topbar__inner">
+    <div class="gm-topbar__group">
+      <a class="gm-topbar__item" href="tel:{{ biz.phone_link }}">
+        {% include icon.html name="phone" class="gm-icon gm-icon--sm" %}
+        <span>{{ biz.phone }}</span>
+      </a>
+      <span class="gm-topbar__item gm-topbar__item--muted">
+        {% include icon.html name="clock" class="gm-icon gm-icon--sm" %}
+        <span>Open 7 Days a Week</span>
+      </span>
+    </div>
+
+    <p class="gm-topbar__promo">
+      {% include icon.html name="truck" class="gm-icon gm-icon--sm" %}
+      Free shipping on orders over {{ site.currency_symbol }}{{ biz.free_shipping_threshold }}
+    </p>
+
+    <div class="gm-topbar__group gm-topbar__group--right">
+      <a class="gm-topbar__item" href="{{ biz.instagram_url }}" target="_blank" rel="noopener">
+        {% include icon.html name="instagram" class="gm-icon gm-icon--sm" %}
+        <span>@{{ biz.instagram }}</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{%- comment -%} ===== Main header ===== {%- endcomment -%}
+<header class="gm-header">
+  <div class="gm-container gm-header__inner">
+    <button class="gm-header__menu" type="button" aria-label="Open menu"
+            aria-expanded="false" aria-controls="gm-mobile-nav" data-nav-toggle>
+      {% include icon.html name="menu" class="gm-icon" %}
+    </button>
+
+    <a class="gm-header__logo" href="{{ '/' | relative_url }}" aria-label="Gameday Mavericks home">
+      {% include logo.svg class="gm-logo" %}
+    </a>
+
+    <form class="gm-header__search" role="search" action="{{ '/collections/all/' | relative_url }}" method="get">
+      <label class="gm-visually-hidden" for="gm-search">Search products</label>
+      <input class="gm-header__search-input" id="gm-search" name="q" type="search"
+             placeholder="Search cards, boxes, supplies..." autocomplete="off">
+      <button class="gm-header__search-btn" type="submit" aria-label="Search">
+        {% include icon.html name="search" class="gm-icon" %}
+      </button>
+    </form>
+
+    <div class="gm-header__actions">
+      <button class="gm-header__action" type="button" aria-label="Account (coming soon)" data-gm-soon="Accounts">
+        {% include icon.html name="user" class="gm-icon" %}
+      </button>
+      <button class="gm-header__action gm-header__action--hide-sm" type="button" aria-label="Wishlist (coming soon)" data-gm-soon="Wishlists">
+        {% include icon.html name="heart" class="gm-icon" %}
+      </button>
+      <a class="gm-header__action gm-header__cart" href="{{ '/cart/' | relative_url }}" aria-label="Cart">
+        {% include icon.html name="cart" class="gm-icon" %}
+        <span class="gm-cart-count" data-cart-count hidden>0</span>
+      </a>
+    </div>
+  </div>
+</header>

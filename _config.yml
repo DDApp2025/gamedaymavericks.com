@@ -1,0 +1,72 @@
+# ============================================================
+#  Gameday Mavericks - Jekyll Configuration
+#  Sports Cards & TCG | Las Vegas, NV
+# ============================================================
+
+# ---- Site identity --------------------------------------------------
+title: "Gameday Mavericks"
+tagline: "Sports Cards & TCG"
+description: >-
+  Gameday Mavericks is a Las Vegas sports cards and TCG card shop.
+  We buy, sell, trade, and grade. Sports cards, Pokemon, Magic,
+  Yu-Gi-Oh, One Piece, graded singles, sealed product, and supplies.
+
+# ---- URL / hosting --------------------------------------------------
+# For GitHub Pages PROJECT site testing the site lives at:
+#   https://ddapp2025.github.io/gamedaymavericks.com/
+# so baseurl MUST be the repo name. When the custom domain
+# (gamedaymavericks.com) is connected at the root, set baseurl to ""
+# (empty) and url to "https://gamedaymavericks.com". See README.md.
+url: "https://ddapp2025.github.io"
+baseurl: "/gamedaymavericks.com"
+
+# ---- Business info (single source of truth, used across the site) ---
+business:
+  name: "Gameday Mavericks"
+  legal_name: "Gameday Mavericks Sports Cards & TCG"
+  phone: "702-723-3611"
+  phone_link: "+17027233611"
+  email: "info@gamedaymavericks.com"
+  instagram: "gamedaymavericks_22"
+  instagram_url: "https://www.instagram.com/gamedaymavericks_22/"
+  address_line1: "Las Vegas, NV"
+  address_line2: "Suite 105"
+  city: "Las Vegas"
+  state: "NV"
+  # Free-shipping threshold is a placeholder value (the spec left it
+  # as "$X"). Change this single number to update it everywhere.
+  free_shipping_threshold: 99
+  hours:
+    - { day: "Monday",    open: "11:00 AM", close: "7:00 PM" }
+    - { day: "Tuesday",   open: "11:00 AM", close: "7:00 PM" }
+    - { day: "Wednesday", open: "11:00 AM", close: "7:00 PM" }
+    - { day: "Thursday",  open: "11:00 AM", close: "7:00 PM" }
+    - { day: "Friday",    open: "11:00 AM", close: "8:00 PM" }
+    - { day: "Saturday",  open: "11:00 AM", close: "8:00 PM" }
+    - { day: "Sunday",    open: "12:00 PM", close: "5:00 PM" }
+
+# ---- Stripe (DEMO MODE) ---------------------------------------------
+# demo_mode: true  -> checkout redirects to /checkout-demo/ (no real charge)
+# demo_mode: false -> real Stripe Checkout using publishable_key + price IDs
+# See README.md "Flipping from Demo Mode to real Stripe".
+stripe:
+  demo_mode: true
+  publishable_key: "pk_test_REPLACE_WITH_REAL_KEY"
+
+# ---- Build settings -------------------------------------------------
+# Every page declares its own explicit `permalink` in front matter so the
+# output URLs match _data/nav.yml exactly (e.g. /collections/sports/).
+# This is more predictable than a global permalink style.
+
+# Currency used for display formatting helpers.
+currency_symbol: "$"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CC_PROMPT_GAMEDAY_MAVERICKS.md
+  - "*.jpeg"
+  - "*.jpg"
+  - vendor
+  - .gitignore

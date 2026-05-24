@@ -1,0 +1,56 @@
+---
+layout: default
+permalink: /success/
+title: Order Confirmed
+description: "Thank you for your order."
+---
+
+<section class="gm-section">
+  <div class="gm-container">
+    <div class="gm-result">
+      {% include icon.html name="check-circle" class="gm-icon gm-result__icon" %}
+      <h1>Thank you for your order</h1>
+      <p class="gm-lead">Your order is confirmed. We will reach out with pickup or shipping details. Questions? Call us at <a href="tel:{{ site.business.phone_link }}">{{ site.business.phone }}</a>.</p>
+
+      <div class="gm-result__order"><span>Order Number</span><span data-order-number>GM-000000</span></div>
+
+      <div class="gm-result__lines" data-success-lines></div>
+      <div class="gm-result__total" data-success-total hidden><span>Total</span><span data-success-total-amt></span></div>
+
+      <div class="gm-result__actions">
+        <a class="gm-btn gm-btn--primary" href="{{ '/collections/all/' | relative_url }}">Continue Shopping</a>
+        <a class="gm-btn gm-btn--outline" href="{{ '/' | relative_url }}">Back to Home</a>
+      </div>
+
+      {% if site.stripe.demo_mode %}<p class="gm-cart__note gm-center" style="justify-content:center;margin-top:1.5rem">This was a demo order. No payment was processed.</p>{% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!window.GMCart) return;
+    var cart = window.GMCart.getCart();
+    var money = window.GMCart.formatMoney;
+
+    // Order number
+    var num = "GM-" + String(Math.floor(100000 + Math.random() * 900000));
+    var numEl = document.querySelector("[data-order-number]");
+    if (numEl) numEl.textContent = num;
+
+    // Render purchased lines (if any) before clearing
+    var linesEl = document.querySelector("[data-success-lines]");
+    function esc(s){ return String(s||"").replace(/[&<>"']/g,function(c){return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c];}); }
+    if (cart.length && linesEl) {
+      linesEl.innerHTML = cart.map(function (i) {
+        return '<div class="gm-result__line"><span>' + esc(i.title) + ' &times; ' + i.quantity + '</span><span>' + money(i.price * i.quantity) + '</span></div>';
+      }).join("");
+      var totalEl = document.querySelector("[data-success-total]");
+      var amtEl = document.querySelector("[data-success-total-amt]");
+      if (totalEl && amtEl) { amtEl.textContent = money(window.GMCart.getGrandTotal()); totalEl.hidden = false; }
+    }
+
+    // Clear the cart now that the order is "placed"
+    window.GMCart.clearCart();
+  });
+</script>

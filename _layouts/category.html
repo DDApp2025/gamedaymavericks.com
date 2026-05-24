@@ -1,0 +1,54 @@
+---
+layout: default
+---
+{%- comment -%}
+  Category grid layout. Front matter controls filtering:
+    show_all: true            -> every product
+    filter_field / filter_value -> site.data.products | where: field, value
+  Plus: collection_title, collection_intro, parent_title, parent_url
+{%- endcomment -%}
+{%- if page.show_all -%}
+  {%- assign products = site.data.products -%}
+{%- else -%}
+  {%- assign products = site.data.products | where: page.filter_field, page.filter_value -%}
+{%- endif -%}
+
+<section class="gm-pagehead">
+  <div class="gm-container">
+    <nav class="gm-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span aria-hidden="true">/</span>
+      {%- if page.parent_title and page.parent_url -%}
+      <a href="{{ page.parent_url | relative_url }}">{{ page.parent_title }}</a>
+      <span aria-hidden="true">/</span>
+      {%- endif -%}
+      <span class="gm-breadcrumb__current">{{ page.collection_title | default: page.title }}</span>
+    </nav>
+    <h1 class="gm-pagehead__title">{{ page.collection_title | default: page.title }}</h1>
+    {%- if page.collection_intro %}<p class="gm-pagehead__intro">{{ page.collection_intro }}</p>{% endif -%}
+  </div>
+</section>
+
+<section class="gm-section gm-section--tight">
+  <div class="gm-container">
+    <div class="gm-collection__bar">
+      <span class="gm-collection__count">{{ products | size }} product{% if products.size != 1 %}s{% endif %}</span>
+    </div>
+
+    {%- if products.size > 0 -%}
+    <div class="gm-grid gm-grid--products">
+      {%- for p in products -%}{% include product-card.html product=p %}{%- endfor -%}
+    </div>
+    {%- else -%}
+    <div class="gm-empty">
+      {% include icon.html name="cards" class="gm-icon gm-empty__icon" %}
+      <h2 class="gm-empty__title">New inventory dropping soon</h2>
+      <p class="gm-empty__text">We are restocking this category every week. Stop by the shop or call us to see what just came in, or browse everything else in stock.</p>
+      <div class="gm-empty__actions">
+        <a class="gm-btn gm-btn--primary" href="{{ '/collections/all/' | relative_url }}">Browse All Products</a>
+        <a class="gm-btn gm-btn--outline" href="tel:{{ site.business.phone_link }}">Call {{ site.business.phone }}</a>
+      </div>
+    </div>
+    {%- endif -%}
+  </div>
+</section>

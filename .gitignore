@@ -1,0 +1,31 @@
+# ---- Jekyll build output ----
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# ---- Ruby / Bundler (local preview only) ----
+vendor/
+Gemfile.lock
+.bundle/
+
+# ---- Local reference material (not part of the published site) ----
+/CC_PROMPT_GAMEDAY_MAVERICKS.md
+/IMG_*.jpeg
+/IMG_*.jpg
+
+# ---- Windows ----
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ---- macOS ----
+.DS_Store
+
+# ---- Editors ----
+.vscode/
+.idea/
+*.swp
+*~

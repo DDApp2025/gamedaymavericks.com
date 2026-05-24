@@ -1,0 +1,159 @@
+---
+layout: default
+permalink: /
+title: Sports Cards & TCG in Las Vegas
+description: "Gameday Mavericks is a Las Vegas card shop. Buy, sell, trade, and grade sports cards, Pokemon, and TCG. Sealed product, graded singles, and supplies."
+---
+
+{%- comment -%} ============ HERO ============ {%- endcomment -%}
+<section class="gm-hero">
+  <div class="gm-container">
+    <div class="gm-hero__inner gm-reveal">
+      <span class="gm-hero__eyebrow">Las Vegas Sports Cards &amp; TCG</span>
+      <h1 class="gm-hero__title">Your shop for the <em>hobby</em></h1>
+      <div class="gm-hero__bst">
+        <span>Buy</span><span>Sell</span><span>Trade</span><span>Grade</span>
+      </div>
+      <p class="gm-hero__text">Sealed boxes, graded slabs, and singles across every sport, Pokemon, and TCG. Walk in, browse the cases, and pull with the crew. Built by collectors, for collectors.</p>
+      <div class="gm-hero__actions">
+        <a class="gm-btn gm-btn--primary gm-btn--lg" href="{{ '/collections/all/' | relative_url }}">Shop All Products</a>
+        <a class="gm-btn gm-btn--outline gm-btn--lg" href="{{ '/services/' | relative_url }}">Sell Your Cards</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ============ TWO-PANEL SPLIT ============ {%- endcomment -%}
+<section class="gm-section">
+  <div class="gm-container">
+    <div class="gm-duo">
+      <a class="gm-duo__card" href="{{ '/collections/sports/' | relative_url }}">
+        <img class="gm-duo__img" src="{{ '/assets/images/banner-sports.svg' | relative_url }}" alt="Shop sports cards" loading="lazy">
+        <div class="gm-duo__content">
+          <h2 class="gm-duo__title">Shop Sports</h2>
+          <p class="gm-duo__text">Baseball, football, basketball, and more.</p>
+          <span class="gm-section__link">Browse Sports {% include icon.html name="arrow-right" %}</span>
+        </div>
+      </a>
+      <a class="gm-duo__card" href="{{ '/collections/tcg/' | relative_url }}">
+        <img class="gm-duo__img" src="{{ '/assets/images/banner-tcg.svg' | relative_url }}" alt="Shop trading card games" loading="lazy">
+        <div class="gm-duo__content">
+          <h2 class="gm-duo__title">Shop TCG</h2>
+          <p class="gm-duo__text">Pokemon, Magic, Yu-Gi-Oh, One Piece, and more.</p>
+          <span class="gm-section__link">Browse TCG {% include icon.html name="arrow-right" %}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ============ FEATURED PRODUCTS ============ {%- endcomment -%}
+<section class="gm-section gm-section--alt">
+  <div class="gm-container">
+    <div class="gm-section__head">
+      <div>
+        <p class="gm-section__eyebrow">Just In</p>
+        <h2 class="gm-section__title">Featured Products</h2>
+      </div>
+      <a class="gm-section__link" href="{{ '/collections/all/' | relative_url }}">View All {% include icon.html name="arrow-right" %}</a>
+    </div>
+    {%- assign shown = 0 -%}
+    <div class="gm-grid gm-grid--products">
+      {%- for p in site.data.products -%}
+        {%- if p.featured and shown < 8 -%}
+          {% include product-card.html product=p %}
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ============ DEALER STRIP (text placeholders) ============ {%- endcomment -%}
+<section class="gm-dealers">
+  <div class="gm-container gm-dealers__inner">
+    <p class="gm-dealers__title">Grading &amp; product we deal in</p>
+    <div class="gm-dealers__list">
+      <span class="gm-dealer">PSA <span>AUTHORIZED</span></span>
+      <span class="gm-dealer">BGS</span>
+      <span class="gm-dealer">CGC</span>
+      <span class="gm-dealer">PANINI</span>
+      <span class="gm-dealer">TOPPS</span>
+      <span class="gm-dealer">POKEMON <span>TCG</span></span>
+      <span class="gm-dealer">FANATICS</span>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ============ SERVICES (3 cards) ============ {%- endcomment -%}
+<section class="gm-section">
+  <div class="gm-container">
+    <div class="gm-section__head">
+      <div>
+        <p class="gm-section__eyebrow">What We Do</p>
+        <h2 class="gm-section__title">Shop Services</h2>
+      </div>
+      <a class="gm-section__link" href="{{ '/services/' | relative_url }}">All Services {% include icon.html name="arrow-right" %}</a>
+    </div>
+    <div class="gm-services">
+      {%- for s in site.data.services.highlights -%}
+      <article class="gm-svc">
+        <div class="gm-svc__icon">{% include icon.html name=s.icon %}</div>
+        <h3 class="gm-svc__title">{{ s.title }}</h3>
+        <p class="gm-svc__text">{{ s.description }}</p>
+        {%- assign ext = s.cta_url | slice: 0, 4 -%}
+        <a class="gm-svc__link" href="{{ s.cta_url | relative_url }}"{% if ext == "http" %} target="_blank" rel="noopener"{% endif %}>{{ s.cta_label }} {% include icon.html name="arrow-right" %}</a>
+      </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ============ ABOUT TEASER ============ {%- endcomment -%}
+<section class="gm-section gm-section--alt">
+  <div class="gm-container">
+    <div class="gm-feature">
+      <div class="gm-feature__media">
+        <img src="{{ '/assets/images/shop-photo.svg' | relative_url }}" alt="Inside the Gameday Mavericks shop in Las Vegas" loading="lazy">
+      </div>
+      <div class="gm-feature__body">
+        <p class="gm-section__eyebrow">Built by Collectors</p>
+        <h2 class="gm-section__title">More than a card shop</h2>
+        <p class="gm-feature__text">We opened Gameday Mavericks to give Las Vegas a real home base for the hobby. Whether you are chasing a rookie, ripping packs with friends, or selling a collection you have held for years, you get honest pricing and people who actually love this stuff. Stop in, talk cards, and find your next pull.</p>
+        <div class="gm-feature__actions">
+          <a class="gm-btn gm-btn--primary" href="{{ '/about/' | relative_url }}">About the Shop</a>
+          <a class="gm-btn gm-btn--outline" href="tel:{{ site.business.phone_link }}">Call {{ site.business.phone }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ============ TESTIMONIALS (placeholder copy - replace with real reviews) ============ {%- endcomment -%}
+<section class="gm-section">
+  <div class="gm-container">
+    <div class="gm-section__head">
+      <div>
+        <p class="gm-section__eyebrow">From the Community</p>
+        <h2 class="gm-section__title">What Collectors Say</h2>
+      </div>
+    </div>
+    <div class="gm-testi">
+      <article class="gm-testi__card">
+        <div class="gm-testi__stars" aria-label="5 out of 5 stars">{% include icon.html name="star" %}{% include icon.html name="star" %}{% include icon.html name="star" %}{% include icon.html name="star" %}{% include icon.html name="star" %}</div>
+        <p class="gm-testi__quote">"Best card shop in Vegas. The cases are always stocked and they gave me a fair offer on my collection, no games."</p>
+        <p class="gm-testi__author">Marcus T.</p>
+      </article>
+      <article class="gm-testi__card">
+        <div class="gm-testi__stars" aria-label="5 out of 5 stars">{% include icon.html name="star" %}{% include icon.html name="star" %}{% include icon.html name="star" %}{% include icon.html name="star" %}{% include icon.html name="star" %}</div>
+        <p class="gm-testi__quote">"My go-to for Pokemon. Friendly staff, great breaks, and they actually know the hobby. Highly recommend."</p>
+        <p class="gm-testi__author">Jenna R.</p>
+      </article>
+      <article class="gm-testi__card">
+        <div class="gm-testi__stars" aria-label="5 out of 5 stars">{% include icon.html name="star" %}{% include icon.html name="star" %}{% include icon.html name="star" %}{% include icon.html name="star" %}{% include icon.html name="star" %}</div>
+        <p class="gm-testi__quote">"Handled my PSA submission start to finish and kept me posted the whole time. Slabs came back perfect."</p>
+        <p class="gm-testi__author">Diego M.</p>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-label="Gameday Mavericks Card Shop" preserveAspectRatio="xMidYMid meet">
+  <title>Gameday Mavericks Card Shop</title>
+  <defs>
+    <linearGradient id="gmBannerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E63048"/>
+      <stop offset="0.55" stop-color="#C8102E"/>
+      <stop offset="1" stop-color="#9A0C24"/>
+    </linearGradient>
+    <linearGradient id="gmSilverGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="#EDEFF2"/>
+      <stop offset="1" stop-color="#C2C7CE"/>
+    </linearGradient>
+  </defs>
+  <polygon points="60,18 580,18 624,86 580,154 60,154 16,86"
+           fill="url(#gmBannerGrad)" stroke="#7A0A1C" stroke-width="5" stroke-linejoin="round"/>
+  <text x="322" y="92" text-anchor="middle" dominant-baseline="middle"
+        font-family="'Oswald', 'Arial Narrow', Impact, sans-serif"
+        font-weight="700" font-size="98" letter-spacing="2" fill="#6E0917">GAMEDAY</text>
+  <text x="320" y="89" text-anchor="middle" dominant-baseline="middle"
+        font-family="'Oswald', 'Arial Narrow', Impact, sans-serif"
+        font-weight="700" font-size="98" letter-spacing="2"
+        fill="url(#gmSilverGrad)" stroke="#2A2A2A" stroke-width="1.5" paint-order="stroke">GAMEDAY</text>
+  <polygon points="150,168 490,168 516,196 490,224 150,224 124,196"
+           fill="#16161A" stroke="#C8102E" stroke-width="3.5" stroke-linejoin="round"/>
+  <text x="320" y="198" text-anchor="middle" dominant-baseline="middle"
+        font-family="'Oswald', 'Arial Narrow', Impact, sans-serif"
+        font-weight="600" font-size="42" letter-spacing="7" fill="#F5F5F5">MAVERICKS</text>
+  <text x="320" y="258" text-anchor="middle" dominant-baseline="middle"
+        font-family="'Oswald', 'Arial Narrow', Impact, sans-serif"
+        font-weight="700" font-size="28" letter-spacing="12" fill="#C8102E">CARD SHOP</text>
+</svg>
