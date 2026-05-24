@@ -70,3 +70,8 @@ exclude:
   - "*.jpg"
   - vendor
   - .gitignore
+  # Local-preview tooling (not part of the published site)
+  - serve.js
+  - preview.cmd
+  - build-local.ps1
+  - _localpreview

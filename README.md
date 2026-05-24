@@ -50,10 +50,29 @@ products/                One file per product (detail pages)
 
 ---
 
-## 2. Local preview (optional)
+## 2. Local preview
 
 You do **not** need this to deploy. GitHub Pages builds the site automatically.
-To preview locally you need Ruby + Bundler:
+
+### Option A - No Ruby needed (uses Node, recommended on Windows)
+
+Double-click **`preview.cmd`** (or run the two commands below). It pulls the
+already-built pages from the live site into `_localpreview/` and serves them at
+`http://localhost:8080/`. CSS, JS, and images are served straight from your local
+`assets/` folder, so styling and script edits show up on a browser refresh.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File build-local.ps1   # build pages from live site
+node serve.js                                               # serve at http://localhost:8080/
+```
+
+After you change any `.html` / Liquid template, push it, wait ~1 minute for
+GitHub Pages to rebuild, then re-run `build-local.ps1` to refresh the local copy.
+(CSS/JS/image edits do not need a rebuild, just refresh the browser.)
+
+### Option B - Full Jekyll dev server (reflects template edits instantly)
+
+Requires Ruby + Bundler. This is the real dev loop for editing Liquid templates:
 
 ```bash
 gem install bundler
