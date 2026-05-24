@@ -469,6 +469,7 @@ a { transition: color var(--t-fast); }
   color: var(--gm-text);                    /* black text on the white hero */
   padding-block: clamp(var(--sp-7), 9vw, var(--sp-9));
   max-width: 760px;
+  order: 2;                                 /* text below image (mobile) / right column (desktop) */
 }
 .gm-hero__eyebrow {
   display: inline-block;
@@ -506,6 +507,27 @@ a { transition: color var(--t-fast); }
 }
 .gm-hero__text { color: #3A3A3A; font-size: 1.05rem; max-width: 56ch; margin-bottom: var(--sp-5); }
 .gm-hero__actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+
+/* Hero two-column layout: image left / text right on desktop; on mobile the
+   image stacks ABOVE the text. Mobile-first single column. */
+.gm-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-6);
+  align-items: center;
+}
+.gm-hero__media { order: 1; width: 100%; }  /* image first: top (mobile) / left column (desktop) */
+.gm-hero__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  object-fit: cover;
+}
+@media (min-width: 768px) {
+  .gm-hero__grid { grid-template-columns: 1fr 1fr; gap: var(--sp-7); }
+}
 
 /* ============================================================
    8. PRODUCT CARDS & GRIDS  (stay DARK - "gallery" cards on white)

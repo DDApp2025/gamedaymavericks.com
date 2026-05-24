@@ -8,16 +8,24 @@ description: "Gameday Mavericks is a Las Vegas card shop. Buy, sell, trade, and 
 {%- comment -%} ============ HERO ============ {%- endcomment -%}
 <section class="gm-hero">
   <div class="gm-container">
-    <div class="gm-hero__inner gm-reveal">
-      <span class="gm-hero__eyebrow">Las Vegas Sports Cards &amp; TCG</span>
-      <h1 class="gm-hero__title">Las Vegas's home for sports <em>cards</em></h1>
-      <div class="gm-hero__bst">
-        <span>Buy</span><span>Sell</span><span>Trade</span><span>Grade</span>
+    <div class="gm-hero__grid gm-reveal">
+      <div class="gm-hero__media">
+        <img class="gm-hero__image"
+             src="{{ '/assets/images/gdm_storefront.jpg' | relative_url }}"
+             alt="Gameday Mavericks card shop storefront in Las Vegas with truck featuring We Buy Cards signage"
+             width="1170" height="1142" loading="eager">
       </div>
-      <p class="gm-hero__text">Sealed boxes, graded slabs, and singles across every sport, Pokemon, and TCG. Walk in, browse the cases, and pull with the crew. Built by collectors, for collectors.</p>
-      <div class="gm-hero__actions">
-        <a class="gm-btn gm-btn--primary gm-btn--lg" href="{{ '/collections/all/' | relative_url }}">Shop All Products</a>
-        <a class="gm-btn gm-btn--outline gm-btn--lg" href="{{ '/services/' | relative_url }}">Sell Your Cards</a>
+      <div class="gm-hero__inner">
+        <span class="gm-hero__eyebrow">Las Vegas Sports Cards &amp; TCG</span>
+        <h1 class="gm-hero__title">Las Vegas's home for sports <em>cards</em></h1>
+        <div class="gm-hero__bst">
+          <span>Buy</span><span>Sell</span><span>Trade</span><span>Grade</span>
+        </div>
+        <p class="gm-hero__text">Sealed boxes, graded slabs, and singles across every sport, Pokemon, and TCG. Walk in, browse the cases, and pull with the crew. Built by collectors, for collectors.</p>
+        <div class="gm-hero__actions">
+          <a class="gm-btn gm-btn--primary gm-btn--lg" href="{{ '/collections/all/' | relative_url }}">Shop All Products</a>
+          <a class="gm-btn gm-btn--outline gm-btn--lg" href="{{ '/services/' | relative_url }}">Sell Your Cards</a>
+        </div>
       </div>
     </div>
   </div>
