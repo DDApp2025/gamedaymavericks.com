@@ -17,8 +17,8 @@ description: >-
 # so baseurl MUST be the repo name. When the custom domain
 # (gamedaymavericks.com) is connected at the root, set baseurl to ""
 # (empty) and url to "https://gamedaymavericks.com". See README.md.
-url: "https://ddapp2025.github.io"
-baseurl: "/gamedaymavericks.com"
+url: "https://gamedaymavericks.com"
+baseurl: ""
 
 # ---- Business info (single source of truth, used across the site) ---
 business:
