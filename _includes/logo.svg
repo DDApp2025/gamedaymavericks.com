@@ -5,6 +5,6 @@
   so this single file controls the logo everywhere it appears.
 {%- endcomment -%}
 <img class="{{ include.class | default: 'gm-logo' }}"
-     src="{{ '/assets/images/gdm_logo.png' | relative_url }}"
+     src="{{ '/assets/images/gdm_logo.jpg' | relative_url }}"
      alt="Gameday Mavericks Sports Cards and TCG"
-     width="2872" height="1472">
+     width="1424" height="720">
