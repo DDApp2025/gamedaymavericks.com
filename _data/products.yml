@@ -27,7 +27,7 @@
   category: baseball
   type: sealed
   price: 299.99
-  image: /assets/images/products/baseball.svg
+  image: /assets/images/1-2024_Topps_Chrome.jpg
   badge: "SEALED"
   stock: 5
   featured: true
@@ -40,7 +40,7 @@
   category: football
   type: sealed
   price: 499.99
-  image: /assets/images/products/football.svg
+  image: /assets/images/2-2023_Panini.jpg
   badge: "SEALED"
   stock: 3
   featured: true
@@ -53,7 +53,7 @@
   category: basketball
   type: sealed
   price: 649.99
-  image: /assets/images/products/basketball.svg
+  image: /assets/images/3-2023-24_basketball_prizm.jpg
   badge: "SEALED"
   stock: 2
   featured: true
@@ -67,7 +67,7 @@
   category: basketball
   type: graded
   price: 899.99
-  image: /assets/images/products/graded.svg
+  image: /assets/images/4-Panani.jpg
   badge: "GRADED"
   grade: "PSA 10"
   stock: 1
