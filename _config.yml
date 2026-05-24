@@ -66,8 +66,6 @@ exclude:
   - Gemfile.lock
   - README.md
   - CC_PROMPT_GAMEDAY_MAVERICKS.md
-  - "*.jpeg"
-  - "*.jpg"
   - vendor
   - .gitignore
   # Local-preview tooling (not part of the published site)
